@@ -27,6 +27,7 @@ jobs:
       run: |
         npm install
         npm run build:prod
+        rm -rf node_modules
       
     - name: Deploy github pages
       uses: JamesIves/github-pages-deploy-action@3.5.9
