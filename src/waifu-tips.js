@@ -51,8 +51,8 @@ const live2d_settings = {
     'waifuEdgeSide': 'right:0',                 // 看板娘贴边方向，例如 'left:0'(靠左 0px), 'right:30'(靠右 30px)
     // 其他杂项设置
     'l2dVersion': '2.0.0',                      // 当前版本
-    'homePageUrl': 'auto',                      // 主页地址，可选 'auto'(自动), '{URL 网址}'
-    'aboutPageUrl': 'https://konata.tech/',     // 关于页地址, '{URL 网址}'
+    'homePageUrl': 'https://konata09.github.io/Live2dOnWeb/demo.html', // 主页地址，可选 'auto'(自动), '{URL 网址}'
+    'aboutPageUrl': 'https://github.com/Konata09/Live2dOnWeb/', // 关于页地址, '{URL 网址}'
     'screenshotCaptureName': 'bronyaMoe.png',   // 看板娘截图文件名，例如 'live2d.png'
 }
 // 模型列表
