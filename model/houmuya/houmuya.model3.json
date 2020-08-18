@@ -1,0 +1,72 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "houmuya.moc3",
+		"Textures": [
+			"houmuya.2048/texture_00.png"
+		],
+		"Physics": "houmuya.physics3.json",
+		"DisplayInfo": "houmuya.cdi3.json",
+		"Motions": {
+			"TapBody": [
+				{
+					"File": "motions/bomb.motion3.json",
+					"Sound": "wav/emmmm1.wav"
+				},
+				{
+					"File": "motions/order.motion3.json",
+					"Sound": "wav/请指示_1.wav"
+				},
+				{
+					"File": "motions/twist.motion3.json"
+				},
+				{
+					"File": "motions/sleep.motion3.json"
+				}
+			],
+			"TapHead": [
+				{
+					"File": "motions/3m.motion3.json",
+					"Sound": "wav/离地高度3m.wav"
+				},
+				{
+					"File": "motions/fly.motion3.json",
+					"Sound": "wav/被抓起来了1.wav"
+				},
+				{
+					"File": "motions/idle.motion3.json",
+					"Sound": "wav/a1.wav"
+				}
+			]
+		}
+	},
+	"Layout": {
+		"height": 2,
+		"bottom": 1.65
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	],
+	"HitAreas": [
+		{
+			"Id": "HitAreaBody",
+			"Name": "Body"
+		},
+		{
+			"Id": "HitAreaHead",
+			"Name": "Head"
+		}
+	]
+}
