@@ -24,8 +24,9 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: install dependencies
-    - run: npm install
-    - run: npm run build:prod
+      run: |
+        npm install
+        npm run build:prod
       
     - name: Deploy github pages
       uses: JamesIves/github-pages-deploy-action@3.5.9
