@@ -24,11 +24,11 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: install dependencies
-      run: |
-        npm install
-        npm run build:prod
-        rm -rf node_modules
-      
+      run: npm install
+    - name: build live2d_bundle.js
+      run: npm run build:prod
+    - name: remove node_modules
+      run: rm -rf node_modules
     - name: Deploy github pages
       uses: JamesIves/github-pages-deploy-action@3.5.9
       with:
