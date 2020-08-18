@@ -31,7 +31,7 @@ jobs:
     - name: Deploy github pages
       uses: JamesIves/github-pages-deploy-action@3.5.9
       with:
-        BRANCH: gh-pages # The branch the action should deploy to.
+        BRANCH: master # The branch the action should deploy to.
         FOLDER: . # The folder the action should deploy.
     env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
