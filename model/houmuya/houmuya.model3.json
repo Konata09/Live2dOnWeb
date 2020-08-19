@@ -11,11 +11,11 @@
 			"TapBody": [
 				{
 					"File": "motions/bomb.motion3.json",
-					"Sound": "wav/emmmm1.wav"
+					"Sound": "wav/emmmm1.m4a"
 				},
 				{
 					"File": "motions/order.motion3.json",
-					"Sound": "wav/请指示_1.wav"
+					"Sound": "wav/请指示_1.m4a"
 				},
 				{
 					"File": "motions/twist.motion3.json"
@@ -27,15 +27,15 @@
 			"TapHead": [
 				{
 					"File": "motions/3m.motion3.json",
-					"Sound": "wav/离地高度3m.wav"
+					"Sound": "wav/离地高度3m.m4a"
 				},
 				{
 					"File": "motions/fly.motion3.json",
-					"Sound": "wav/被抓起来了1.wav"
+					"Sound": "wav/被抓起来了1.m4a"
 				},
 				{
 					"File": "motions/idle.motion3.json",
-					"Sound": "wav/a1.wav"
+					"Sound": "wav/a1.m4a"
 				}
 			]
 		}
