@@ -9,7 +9,7 @@
 - 基于 Cubism SDK 2.1 和 Cubism SDK 4，支持包括 model3 在内的目前全部版本的 Live2D 模型
 - 支持在不同版本的模型之间切换
 - 支持鼠标点击触发动作并播放音频
-- 支持自定义鼠标指针移向指定HTML元素时的提示信息
+- 支持自定义鼠标指针移向指定 HTML 元素时的提示信息
 - 支持截图、一言、跳转首页
 - 无需 jquery，最少只需要引入两个 js 文件即可使用
 - 无需后端
@@ -18,17 +18,17 @@
 
 ### 准备模型
 
-每个模型一个文件夹，其中 Cubism 2 版本模型的入口文件名为 model.json，Cubism 3 以上版本入口文件名为 文件夹名.model3.json。
+每个模型一个文件夹，其中 Cubism 2 版本模型的入口文件名为 `model.json`，Cubism 3 以上版本入口文件名为 `文件夹名.model3.json`。
 
 ### 下载脚本
 
-dist 目录下的 live2d_bundle.js 是核心文件  
-src 目录下的 waifu-tips.js 是配置文件和提示消息的实现代码  
-主目录下的 waifu-tips.json 是提示消息的配置，非必须
+`dist` 目录下的 `live2d_bundle.js` 是核心文件  
+`src` 目录下的 `waifu-tips.js` 是配置文件和提示消息的实现代码  
+主目录下的 `waifu-tips.json` 是提示消息的配置，非必须
 
 ### 修改配置
 
-打开 waifu-tips.js，在文件开始处有看板娘配置和模型列表配置，文件末尾处有相关 CSS，可以根据喜好自己修改。
+打开 `waifu-tips.js`，在文件开始处有看板娘配置和模型列表配置，文件末尾处有相关 CSS，可以根据喜好自己修改。
 
 #### 看板娘配置
 
@@ -75,7 +75,7 @@ const live2d_settings = {
 
 #### 模型列表配置
 
-模型请统一放在上方的 modelUrl 下，每个模型单独一个文件夹
+模型请统一放在上方的 `modelUrl` 下，每个模型单独一个文件夹
 
 ```js
 const live2d_models = [
@@ -104,7 +104,7 @@ const live2d_models = [
 
 ### 修改 HTML
 
-参考项目根目录的 index.html 文件，在 HTML 或者模板文件的 </body> 前加入以下内容：  
+参考项目根目录的 `index.html` 文件，在 HTML 或者模板文件的 `</body>` 前加入以下内容：  
 
 ```html
 <div id="waifu">
