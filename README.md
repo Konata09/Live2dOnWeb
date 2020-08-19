@@ -126,3 +126,11 @@ const live2d_models = [
 <script src="dist/live2d_bundle.js"></script>
 <script async type="module" src="src/waifu-tips.js"></script>
 ```
+
+## 致谢
+
+[Cubism Web Framework](https://github.com/Live2D/CubismWebFramework)  
+[fghrsh](https://www.fghrsh.net/post/123.html)  
+[journey-ad](https://github.com/journey-ad/live2d_src)  
+[xiazeyu](https://github.com/xiazeyu/live2d-widget.js)  
+EYHN
