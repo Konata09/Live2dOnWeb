@@ -59,12 +59,12 @@ const live2d_settings = {
 const live2d_models = [
     {
         name: 'miku',                               // 模型名称要与文件夹名相同
-        message: 'SDK2.1 official sample 初音ミク',  // 切换时的提示信息
+        message: 'SDK2.1 official sample 初音ミク <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',  // 切换时的提示信息
         version: 2                                  // 模型版本，不同版本入口文件不同： 2: model.json 或 3: 模型名.model3.json
     },
     {
         name: 'shizuku',
-        message: 'SDK2.1 official sample しずく',
+        message: 'SDK2.1 official sample しずく <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
         version: 2
     },
     {
@@ -74,7 +74,7 @@ const live2d_models = [
     },
     {
         name: 'Rice',
-        message: 'SDK4 official sample',
+        message: 'SDK4 official sample Rice <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
         version: 3
     },
 ]
@@ -578,6 +578,10 @@ animation-iteration-count:infinite;
 animation-name:shake;
 animation-timing-function:ease-in-out;
 transition:opacity .3s ease
+}
+
+#waifu-message>a {
+color:#7500b7;
 }
 
 #live2d2,#live2d4 {
