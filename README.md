@@ -1,5 +1,8 @@
-在网页中添加 Live2D 模型。  
-[DEMO](https://demo.bronya.moe)  
+![Webpack](https://github.com/Konata09/Live2dOnWeb/workflows/Webpack/badge.svg)
+
+**在网页中添加 Live2D 模型。**
+
+**[DEMO](https://demo.bronya.moe)**
 
 ## 特性
 
