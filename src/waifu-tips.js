@@ -1,12 +1,12 @@
 /*****************************************************************************************************
  く__,.ヘヽ.　　　　/　,ー､ 〉
  　　　　　＼ ', !-─‐-i　/　/´
- 　　　 　 ／｀ｰ'　　　 L/／｀ヽ､             Live2D 看板娘 参数设置
- 　　 　 /　 ／,　 /|　 ,　 ,　　　 ',           Version 2.0.0
- 　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i                Konata
+ 　　　 　 ／｀ｰ'　　　 L/／｀ヽ､                 Live2D Widget Setting
+ 　　 　 /　 ／,　 /|　 ,　 ,　　　 ',               Version 2.0.0
+ 　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i                     Konata
  　　　 ﾚ ﾍ 7ｲ｀ﾄ　 ﾚ'ｧ-ﾄ､!ハ|　 |
  　　　　 !,/7 '0'　　 ´0iソ| 　 |　　　
- 　　　　 |.从"　　_　　 ,,,, / |./ 　 |    网页添加 Live2D 看板娘
+ 　　　　 |.从"　　_　　 ,,,, / |./ 　 |      Add Live2D widget in your website.
  　　　　 ﾚ'| i＞.､,,__　_,.イ / 　.i 　|
  　　　　　 ﾚ'| | / k_７_/ﾚ'ヽ,　ﾊ.　|       Thanks:
  　　　　　　 | |/i 〈|/　 i　,.ﾍ |　i　|    fghrsh / https://www.fghrsh.net/post/123.html
@@ -22,7 +22,7 @@ const live2d_settings = {
     'debugMousemove': false,                    // 打印指针移动坐标
     'logMessageToConsole': true,                // 在控制台显示看板娘消息
     'modelUrl': 'model',
-    'tipsMessage': 'waifu-tips.json',         // waifu-tips.json 路径
+    'tipsMessage': 'waifu-tips.json',           // waifu-tips.json 路径
     // 模型设置
     'modelName': 'miku',                        // 默认模型名称
     'preLoadMotion': false,                     // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时有卡顿
@@ -34,7 +34,7 @@ const live2d_settings = {
     'canTakeScreenshot': true,                  // 显示 看板娘截图  按钮，可选 true(真), false(假)
     'canTurnToHomePage': true,                  // 显示 返回首页    按钮，可选 true(真), false(假)
     'canTurnToAboutPage': true,                 // 显示 跳转关于页  按钮，可选 true(真), false(假)
-    'showVolumeBtn': true,
+    'showVolumeBtn': false,
     // 模型切换模式
     'modelStorage': true,                       // 记忆上次选择的模型，可选 true(真), false(假)
     'modelRandMode': false,                     // 随机切换模型，可选 true(真), false(假)
@@ -192,16 +192,20 @@ function initModel(waifuPath) {
     /* console welcome message */
     console.log("\u304f__,.\u30d8\u30fd.\u3000\u3000\u3000\u3000/\u3000,\u30fc\uff64 \u3009\n\u3000\u3000\u3000\u3000\u3000\uff3c ', !-\u2500\u2010-i\u3000/\u3000/\u00b4\n\u3000\u3000\u3000 \u3000 \uff0f\uff40\uff70'\u3000\u3000\u3000 L/\uff0f\uff40\u30fd\uff64\n\u3000\u3000 \u3000 /\u3000 \uff0f,\u3000 /|\u3000 ,\u3000 ,\u3000\u3000\u3000 ',\n\u3000\u3000\u3000\uff72 \u3000/ /-\u2010/\u3000\uff49\u3000L_ \uff8a \u30fd!\u3000 i\n\u3000\u3000\u3000 \uff9a \uff8d 7\uff72\uff40\uff84\u3000 \uff9a'\uff67-\uff84\uff64!\u30cf|\u3000 |\n\u3000\u3000\u3000\u3000 !,/7 '0'\u3000\u3000 \u00b40i\u30bd| \u3000 |\u3000\u3000\u3000\n\u3000\u3000\u3000\u3000 |.\u4ece\"\u3000\u3000_\u3000\u3000 ,,,, / |./ \u3000 |\n\u3000\u3000\u3000\u3000 \uff9a'| i\uff1e.\uff64,,__\u3000_,.\u30a4 / \u3000.i \u3000|\n\u3000\u3000\u3000\u3000\u3000 \uff9a'| | / k_\uff17_/\uff9a'\u30fd,\u3000\uff8a.\u3000|\n\u3000\u3000\u3000\u3000\u3000\u3000 | |/i \u3008|/\u3000 i\u3000,.\uff8d |\u3000i\u3000|\n\u3000\u3000\u3000\u3000\u3000\u3000.|/ /\u3000\uff49\uff1a \u3000 \uff8d!\u3000\u3000\uff3c\u3000|\n\u3000\u3000\u3000 \u3000 \u3000 k\u30fd>\uff64\uff8a \u3000 _,.\uff8d\uff64 \u3000 /\uff64!\n\u3000\u3000\u3000\u3000\u3000\u3000 !'\u3008//\uff40\uff34\u00b4', \uff3c \uff40'7'\uff70r'\n\u3000\u3000\u3000\u3000\u3000\u3000 \uff9a'\u30fdL__|___i,___,\u30f3\uff9a|\u30ce\n\u3000\u3000\u3000\u3000\u3000 \u3000\u3000\u3000\uff84-,/\u3000|___./\n\u3000\u3000\u3000\u3000\u3000 \u3000\u3000\u3000'\uff70'\u3000\u3000!_,.:\nLive2D \u770b\u677f\u5a18 v" + live2d_settings.l2dVersion + " / Konata");
 
-    /* 加载看板娘样式 */
-    live2d_settings.waifuEdgeSide = live2d_settings.waifuEdgeSide.split(':');
-    if (live2d_settings.waifuEdgeSide[0] === 'left')
-        waifu.style.left = live2d_settings.waifuEdgeSide[1] + 'px';
-    else if (live2d_settings.waifuEdgeSide[0] === 'right')
-        waifu.style.right = live2d_settings.waifuEdgeSide[1] + 'px';
+    /* Load style sheet */
+    addStyle(waifuStyle);
     $$(`#${live2dId2}`).setAttribute('height', live2d_settings.live2dHeight);
     $$(`#${live2dId2}`).setAttribute('width', live2d_settings.live2dWidth);
     $$(`#${live2dId4}`).setAttribute('height', live2d_settings.live2dHeight);
     $$(`#${live2dId4}`).setAttribute('width', live2d_settings.live2dWidth);
+    if (!live2d_settings.showToolMenu) $$('.waifu-tool').classList.add('hide');
+    if (!live2d_settings.canCloseLive2d) $$('.waifu-tool .icon-cross').classList.add('hide');
+    if (!live2d_settings.canSwitchModel) $$('.waifu-tool .icon-next').classList.add('hide');
+    if (!live2d_settings.canSwitchHitokoto) $$('.waifu-tool .icon-message').classList.add('hide');
+    if (!live2d_settings.canTakeScreenshot) $$('.waifu-tool .icon-camera').classList.add('hide');
+    if (!live2d_settings.canTurnToHomePage) $$('.waifu-tool .icon-home').classList.add('hide');
+    if (!live2d_settings.canTurnToAboutPage) $$('.waifu-tool .icon-about').classList.add('hide');
+    if (!live2d_settings.showVolumeBtn) $$('.waifu-tool .icon-volumeup').classList.add('hide') || $$('.waifu-tool .icon-volumedown').classList.add('hide');
 
     window.waifuResize = () => {
         window.innerWidth <= Number(live2d_settings.waifuMinWidth.replace('px', '')) ? waifu.classList.add('hide') : waifu.classList.remove('hide');
@@ -221,15 +225,6 @@ function initModel(waifuPath) {
             .then(res => res.json())
             .then(resjson => loadTipsMessage(resjson));
     }
-
-    if (!live2d_settings.showToolMenu) $$('.waifu-tool').classList.add('hide');
-    if (!live2d_settings.canCloseLive2d) $$('.waifu-tool .icon-cross').classList.add('hide');
-    if (!live2d_settings.canSwitchModel) $$('.waifu-tool .icon-next').classList.add('hide');
-    if (!live2d_settings.canSwitchHitokoto) $$('.waifu-tool .icon-message').classList.add('hide');
-    if (!live2d_settings.canTakeScreenshot) $$('.waifu-tool .icon-camera').classList.add('hide');
-    if (!live2d_settings.canTurnToHomePage) $$('.waifu-tool .icon-home').classList.add('hide');
-    if (!live2d_settings.canTurnToAboutPage) $$('.waifu-tool .icon-about').classList.add('hide');
-    if (!live2d_settings.showVolumeBtn) $$('.waifu-tool .icon-volumeup').classList.add('hide') || $$('.waifu-tool .icon-volumedown').classList.add('hide');
 
     let modelName = getLS('modelName');
 
@@ -532,7 +527,11 @@ function loadTipsMessage(result) {
     })
 }
 
-initModel();
+const addStyle = (() => {
+    const style = document.createElement('style');
+    document.head.append(style);
+    return (styleString) => style.textContent = styleString;
+})();
 
 const blobDownload = (blob) => {
     if (typeof blob == 'object' && blob instanceof Blob) {
@@ -550,5 +549,79 @@ const blobDownload = (blob) => {
     aLink.dispatchEvent(event);
 }
 
+const waifuStyle = `
+#waifu {
+${live2d_settings.waifuEdgeSide}px;
+position:fixed;
+bottom:0;
+z-index:998;
+font-size:0
+}
+
+#waifu-message {
+font-size:1rem;
+width:-moz-fit-content;
+width:fit-content;
+height:auto;
+left:2rem;
+top:20px;
+opacity:0;
+z-index:998;
+margin:auto;
+padding:5px 10px;
+border:1px solid rgba(104,216,255,0.62);
+border-radius:12px;
+background-color:rgba(76,191,255,0.8);
+box-shadow:0 3px 15px 2px rgba(16,51,49,0.3);
+text-overflow:ellipsis;
+overflow:hidden;
+position:relative;
+animation-delay:5s;
+animation-duration:50s;
+animation-iteration-count:infinite;
+animation-name:shake;
+animation-timing-function:ease-in-out;
+transition:opacity .3s ease
+}
+
+#live2d2,#live2d4 {
+position:relative;
+display:none;
+z-index:997
+}
+
+.waifu-tool {
+display:none;
+color:#d73b66;
+top:130px;
+right:10px;
+position:absolute;
+z-index:998
+}
+
+#waifu:hover > .waifu-tool {
+display:block
+}
+
+.waifu-tool > span {
+font-family:"waifuico"!important;
+display:block;
+cursor:pointer;
+color:#0396FF;
+transition:.2s;
+font-size:18px;
+font-style:normal;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale
+}
+
+.waifu-tool > span:hover {
+color:#43CBFF
+}
+
+// define icon and animation
+.waifu-tool > .icon-next:before{padding-left:1px;content:"\\e6ba"}.waifu-tool > .icon-message:before{content:"\\e632"}.waifu-tool > .icon-cross:before{content:"\\e606"}.waifu-tool > .icon-about:before{content:"\\e60c"}.waifu-tool > .icon-home:before{content:"\\e604"}.waifu-tool > .icon-camera:before{content:"\\e635"}.waifu-tool > .icon-volumedown:before{content:"\\e6c2"}.waifu-tool > .icon-volumeup:before{content:"\\e6c3"}#waifu.hide,.waifu-tool > span.hide{display:none}@font-face{font-family:"waifuico";src:url(data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAWcAAsAAAAAC0gAAAVNAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCEAgqIVIcCATYCJAMkCxQABCAFhG0HchuYCVGUT06K7OeB7R6lCBOgbWnZzIYDWz+EMHANCwis4uG/tdf7dmbx/wC6VAGqgCuhAwBFIEwVsNJVwEb21LKO3q1lyz+tCZvx3+UrWlPV795l73pusllKVXgcRqIMCNk9wkGaA/IP1K2mWg6WmlnR1Qqa7lwLoaYD/FpfOAE/f7i06QU2n2W5rPV/cy2K44ACGrcnLqDD0wI/YTkL68xspUBnvQo9T6CzQkdr1/bhCczKuDJQdj1LDMwmDHIFPTTqquDavDGelJricfGKl+7w8d98zFIoE/6iA9e2Ylj9lX1P9TmTXns0nA3bm0jYCGTiTaHjmRQkNprQnXOzC8C4sE0w1P4qQ/OWvPO97zOkb72kik5d+CcPlJKsUAm1hqhw1ZCot5MNv7LiUvKr4pL4NVSqQvPQKYCWoNQMvYNOAH2DTg30HQ0a0JprJoEpEPsB4i2ON7lEyOJpoGWF9Uoz6iBtQmEZSR0YgyVVYPFeOIPN3GSY5uUOTjKmlLks4xwO30ihSfCIyrtB4/PlZurwHsUBoelpYahQGMsORi9mnmOcZ53Fz4BQ8IuaCKZRdi7BW+cZ52Szpw+ehI6b5uVwWNcZJrl5XEaG4Bld+DyO/5TGe5LbP7LAWhojkRiji8z5YcW4eTbOYXEZBO3YphYFXCQmlfO4fOOcAZytB5LH1+1A0uQ5B/DIGQ0gj8ejLuvzhMI4gSALZBJK9MFFEGbOK1D72SB4ZF2DPLFhL3v8OkqZ3MwXCOi1BHU/icfLYxIMLouDs5sWjxhRQR6VjJ+FINpJiKW8dBgVnzyUAzNnYNNHlnYjV2upFMVP6IFi1tXVmW8ihqPPJMWLn3H3seGju3ci3kxPEJTA0jrAQ0fD8Bh6dl1hXf0jKHdKaRsxTzcO0JWMCoNpvbEutxBvrD4E64xscguymJWl87Zjuz13sbN3o1/REc9hj2HPEfRfUA14VOUN+7FLSlHD9gF0AN/dJbxQrsdqTB3bWeDw0/XbbtrtD/xvuymCYSI3VzoM07Joq6QFcq1EreSY1AupY67wGmL52IowWn008LOtnCa+PdJrVOzu58O13kDd54MrhoRV1HZxf/zUr1jBGrG7pF/6h14kOo20kntvDF6kSO5t+TgvfqwJSQ/VSg0rQ5KRsjB/bGg60jQ9Ai1DI9N26w1XrItJXd3kYnKRURRvBJG8CHy8T2KLtC/qq2WL2gJ6vtlO77JfPuylAcBR1HTZpJf91SwxeD4oigJToj4caJer06uTaZep061vZt/78dVJJWe2AnU4gB5PDpTgyF6yu7ScXvf3eIak4yE/dIofEGczzzlM3ABqvZvHHD39P3t+ZdNyM/gthH9c/L6TBMMoWrqXvkajeBuRb7kuP60g/JddpNzY5pNEGfo/hx8k0VMSdQi2thsxVqATC3y7PZM+hsUzjVX+THgmgkJtDpLGSmKmboTSwCJUGluhs8HOzQNTxITILdZ7ZBDGvUBh1GdIxr0RM/UdSrN+oTIeE9A5FlP3HFgd2fxOIaMUo73CLOLaSbPO+/IjSkJpJC51jDMSn4Vx2Buk0ztUkwxxgT9PRqoOnXCF2+xlVJaMjXBOkfZS1Wbc77uib+pFXMG8nQQxFIkh6wrKRFjNmeVqPrP/IyQRlAyp6HvmPUOEl62PhnoGDYg7qrpR36XUeucSI0oxB7ltKaugbbKRUiQYaoqPypGI6kk7xBpjfZrnmqp60+PqsV6BDv+YNopIkaOMKupooo1OvkmXOnODvDcJTV0W9tVTFy0Hnb6Xmpwrmr5sqjtz7PwxLkNFMV/Us6E/NAAAAAA=) format("woff2"),url(waifuico.woff?t=1597741284606) format("woff")}@keyframes shake{2%{transform:translate(0.5px,-1.5px) rotate(-0.5deg)}4%{transform:translate(0.5px,1.5px) rotate(1.5deg)}6%{transform:translate(1.5px,1.5px) rotate(1.5deg)}8%{transform:translate(2.5px,1.5px) rotate(0.5deg)}10%{transform:translate(0.5px,2.5px) rotate(0.5deg)}12%{transform:translate(1.5px,1.5px) rotate(0.5deg)}14%{transform:translate(0.5px,0.5px) rotate(0.5deg)}16%{transform:translate(-1.5px,-0.5px) rotate(1.5deg)}18%{transform:translate(0.5px,0.5px) rotate(1.5deg)}20%{transform:translate(2.5px,2.5px) rotate(1.5deg)}22%{transform:translate(0.5px,-1.5px) rotate(1.5deg)}24%{transform:translate(-1.5px,1.5px) rotate(-0.5deg)}26%{transform:translate(1.5px,0.5px) rotate(1.5deg)}28%{transform:translate(-0.5px,-0.5px) rotate(-0.5deg)}30%{transform:translate(1.5px,-0.5px) rotate(-0.5deg)}32%{transform:translate(2.5px,-1.5px) rotate(1.5deg)}34%{transform:translate(2.5px,2.5px) rotate(-0.5deg)}36%{transform:translate(0.5px,-1.5px) rotate(0.5deg)}38%{transform:translate(2.5px,-0.5px) rotate(-0.5deg)}40%{transform:translate(-0.5px,2.5px) rotate(0.5deg)}42%{transform:translate(-1.5px,2.5px) rotate(0.5deg)}44%{transform:translate(-1.5px,1.5px) rotate(0.5deg)}46%{transform:translate(1.5px,-0.5px) rotate(-0.5deg)}48%{transform:translate(2.5px,-0.5px) rotate(0.5deg)}50%{transform:translate(-1.5px,1.5px) rotate(0.5deg)}52%{transform:translate(-0.5px,1.5px) rotate(0.5deg)}54%{transform:translate(-1.5px,1.5px) rotate(0.5deg)}56%{transform:translate(0.5px,2.5px) rotate(1.5deg)}58%{transform:translate(2.5px,2.5px) rotate(0.5deg)}60%{transform:translate(2.5px,-1.5px) rotate(1.5deg)}62%{transform:translate(-1.5px,0.5px) rotate(1.5deg)}64%{transform:translate(-1.5px,1.5px) rotate(1.5deg)}66%{transform:translate(0.5px,2.5px) rotate(1.5deg)}68%{transform:translate(2.5px,-1.5px) rotate(1.5deg)}70%{transform:translate(2.5px,2.5px) rotate(0.5deg)}72%{transform:translate(-0.5px,-1.5px) rotate(1.5deg)}74%{transform:translate(-1.5px,2.5px) rotate(1.5deg)}76%{transform:translate(-1.5px,2.5px) rotate(1.5deg)}78%{transform:translate(-1.5px,2.5px) rotate(0.5deg)}80%{transform:translate(-1.5px,0.5px) rotate(-0.5deg)}82%{transform:translate(-1.5px,0.5px) rotate(-0.5deg)}84%{transform:translate(-0.5px,0.5px) rotate(1.5deg)}86%{transform:translate(2.5px,1.5px) rotate(0.5deg)}88%{transform:translate(-1.5px,0.5px) rotate(1.5deg)}90%{transform:translate(-1.5px,-0.5px) rotate(-0.5deg)}92%{transform:translate(-1.5px,-1.5px) rotate(1.5deg)}94%{transform:translate(0.5px,0.5px) rotate(-0.5deg)}96%{transform:translate(2.5px,-0.5px) rotate(-0.5deg)}98%{transform:translate(-1.5px,-1.5px) rotate(-0.5deg)}0%,100%{transform:translate(0,0) rotate(0)}}
+`;
+initModel();
 window.downloadCap = blobDownload;
 export {showMessage, initModel}
