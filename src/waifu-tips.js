@@ -22,7 +22,7 @@ const live2d_settings = {
     'debugMousemove': false,                    // 打印指针移动坐标
     'logMessageToConsole': true,                // 在控制台显示看板娘消息
     'modelUrl': 'model',
-    'tipsMessage': 'waifu-tips.json',           // waifu-tips.json 路径
+    'tipsMessage': 'waifu-tips.json',           // 看板娘提示消息的路径 可以留空不加载
     // 模型设置
     'modelName': 'miku',                        // 默认模型名称
     'preLoadMotion': false,                     // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时有卡顿
@@ -51,7 +51,7 @@ const live2d_settings = {
     'waifuEdgeSide': 'right:0',                 // 看板娘贴边方向，例如 'left:0'(靠左 0px), 'right:30'(靠右 30px)
     // 其他杂项设置
     'l2dVersion': '2.0.0',                      // 当前版本
-    'homePageUrl': 'https://demo.bronya.moe/',  // 主页地址，可选 'auto'(自动), '{URL 网址}'
+    'homePageUrl': 'https://demo.bronya.moe/', // 主页地址，可选 'auto'(自动), '{URL 网址}'
     'aboutPageUrl': 'https://github.com/Konata09/Live2dOnWeb/', // 关于页地址, '{URL 网址}'
     'screenshotCaptureName': 'bronyaMoe.png',   // 看板娘截图文件名，例如 'live2d.png'
 }
@@ -74,7 +74,7 @@ const live2d_models = [
     },
     {
         name: 'Rice',
-        message: 'SDK4 official sample Rice',
+        message: 'SDK4 official sample',
         version: 3
     },
 ]
@@ -182,7 +182,9 @@ function hideMessage(timeout) {
     }, timeout);
 }
 
-function initModel(waifuPath) {
+function initModel() {
+    /* Load style sheet */
+    addStyle(waifuStyle);
     if (getSS('waifuHide') === '1') {
         waifu.classList.add('hide');
         return;
@@ -192,8 +194,6 @@ function initModel(waifuPath) {
     /* console welcome message */
     console.log("\u304f__,.\u30d8\u30fd.\u3000\u3000\u3000\u3000/\u3000,\u30fc\uff64 \u3009\n\u3000\u3000\u3000\u3000\u3000\uff3c ', !-\u2500\u2010-i\u3000/\u3000/\u00b4\n\u3000\u3000\u3000 \u3000 \uff0f\uff40\uff70'\u3000\u3000\u3000 L/\uff0f\uff40\u30fd\uff64\n\u3000\u3000 \u3000 /\u3000 \uff0f,\u3000 /|\u3000 ,\u3000 ,\u3000\u3000\u3000 ',\n\u3000\u3000\u3000\uff72 \u3000/ /-\u2010/\u3000\uff49\u3000L_ \uff8a \u30fd!\u3000 i\n\u3000\u3000\u3000 \uff9a \uff8d 7\uff72\uff40\uff84\u3000 \uff9a'\uff67-\uff84\uff64!\u30cf|\u3000 |\n\u3000\u3000\u3000\u3000 !,/7 '0'\u3000\u3000 \u00b40i\u30bd| \u3000 |\u3000\u3000\u3000\n\u3000\u3000\u3000\u3000 |.\u4ece\"\u3000\u3000_\u3000\u3000 ,,,, / |./ \u3000 |\n\u3000\u3000\u3000\u3000 \uff9a'| i\uff1e.\uff64,,__\u3000_,.\u30a4 / \u3000.i \u3000|\n\u3000\u3000\u3000\u3000\u3000 \uff9a'| | / k_\uff17_/\uff9a'\u30fd,\u3000\uff8a.\u3000|\n\u3000\u3000\u3000\u3000\u3000\u3000 | |/i \u3008|/\u3000 i\u3000,.\uff8d |\u3000i\u3000|\n\u3000\u3000\u3000\u3000\u3000\u3000.|/ /\u3000\uff49\uff1a \u3000 \uff8d!\u3000\u3000\uff3c\u3000|\n\u3000\u3000\u3000 \u3000 \u3000 k\u30fd>\uff64\uff8a \u3000 _,.\uff8d\uff64 \u3000 /\uff64!\n\u3000\u3000\u3000\u3000\u3000\u3000 !'\u3008//\uff40\uff34\u00b4', \uff3c \uff40'7'\uff70r'\n\u3000\u3000\u3000\u3000\u3000\u3000 \uff9a'\u30fdL__|___i,___,\u30f3\uff9a|\u30ce\n\u3000\u3000\u3000\u3000\u3000 \u3000\u3000\u3000\uff84-,/\u3000|___./\n\u3000\u3000\u3000\u3000\u3000 \u3000\u3000\u3000'\uff70'\u3000\u3000!_,.:\nLive2D \u770b\u677f\u5a18 v" + live2d_settings.l2dVersion + " / Konata");
 
-    /* Load style sheet */
-    addStyle(waifuStyle);
     $$(`#${live2dId2}`).setAttribute('height', live2d_settings.live2dHeight);
     $$(`#${live2dId2}`).setAttribute('width', live2d_settings.live2dWidth);
     $$(`#${live2dId4}`).setAttribute('height', live2d_settings.live2dHeight);
@@ -206,9 +206,23 @@ function initModel(waifuPath) {
     if (!live2d_settings.canTurnToHomePage) $$('.waifu-tool .icon-home').classList.add('hide');
     if (!live2d_settings.canTurnToAboutPage) $$('.waifu-tool .icon-about').classList.add('hide');
     if (!live2d_settings.showVolumeBtn) $$('.waifu-tool .icon-volumeup').classList.add('hide') || $$('.waifu-tool .icon-volumedown').classList.add('hide');
+    $$('.waifu-tool .icon-next').addEventListener('click', () => loadOtherModel());
+    $$('.waifu-tool .icon-home').addEventListener('click', () => window.location = live2d_settings.homePageUrl)
+    $$('.waifu-tool .icon-about').addEventListener('click', () => window.open(live2d_settings.aboutPageUrl))
+    $$('.waifu-tool .icon-camera').addEventListener('click', () => {
+        window.live2dCurrentVersion === 3 ? window.live2dv4.CaptureCanvas() : window.live2dv2.captureFrame = true;
+    });
+    $$('.waifu-tool .icon-cross').addEventListener('click', () => {
+        sessionStorage.setItem('waifuHide', '1');
+        window.setTimeout(function () {
+            waifu.classList.add('hide');
+            // document.getElementById('show-live2d').classList.remove('btnHide');
+        }, 1000);
+    })
 
     window.waifuResize = () => {
-        window.innerWidth <= Number(live2d_settings.waifuMinWidth.replace('px', '')) ? waifu.classList.add('hide') : waifu.classList.remove('hide');
+        if (getSS('waifuHide') !== '1')
+            window.innerWidth <= Number(live2d_settings.waifuMinWidth.replace('px', '')) ? waifu.classList.add('hide') : waifu.classList.remove('hide');
     };
 
     if (live2d_settings.waifuMinWidth !== 'disable') {
@@ -218,13 +232,10 @@ function initModel(waifuPath) {
 
     live2d_settings.homePageUrl = live2d_settings.homePageUrl === 'auto' ? window.location.protocol + '//' + window.location.hostname + '/' : live2d_settings.homePageUrl;
 
-    if (typeof (waifuPath) === "object")
-        loadTipsMessage(waifuPath);
-    else {
-        window.fetch(!waifuPath ? live2d_settings.tipsMessage : (waifuPath.substr(waifuPath.length - 15) === 'waifu-tips.json' ? waifuPath : waifuPath + 'waifu-tips.json'))
+    if (live2d_settings.tipsMessage)
+        window.fetch(live2d_settings.tipsMessage)
             .then(res => res.json())
             .then(resjson => loadTipsMessage(resjson));
-    }
 
     let modelName = getLS('modelName');
 
@@ -246,13 +257,14 @@ function loadModel(modelName) {
         setSS('modelName', modelName);
     live2d_settings.debug && console.log(`[WaifuTips] 加载模型 ${modelName}`);
     let modelVersion = 2;
+    // 在配置中找到要加载模型的版本
     for (let model of live2d_models) {
         if (model.name === modelName) {
             modelVersion = model.version;
             break;
         }
     }
-    //
+    // 如果要加载的模型版本不同，先释放之前的SDK并隐藏canvas
     if (window.live2dCurrentVersion !== modelVersion) {
         if (window.live2dCurrentVersion === 2) {
             window.live2dv2.release();
@@ -262,10 +274,11 @@ function loadModel(modelName) {
             $$(`#${live2dId4}`).style.display = 'none';
         }
     }
+    // 根据模型版本选择不同的SDK加载
     if (modelVersion === 2) {
         $$(`#${live2dId2}`).style.display = 'block';
         window.live2dv2.load(live2dId2, `${live2d_settings.modelUrl}/${modelName}/model.json`);
-    } else if (window.live2dCurrentVersion === modelVersion && modelVersion === 3) {
+    } else if (window.live2dCurrentVersion === modelVersion) {
         window.live2dv4.change(`${live2d_settings.modelUrl}/${modelName}`, `${modelName}.model3.json`);
     } else {
         $$(`#${live2dId4}`).style.display = 'block';
@@ -273,7 +286,7 @@ function loadModel(modelName) {
     }
     window.live2dCurrentVersion = modelVersion;
 }
-
+// 读取记忆的模型
 function modelStorageGetItem(key) {
     return live2d_settings.modelStorage ? getLS(key) : getSS(key);
 }
@@ -290,7 +303,7 @@ function loadOtherModel() {
         else
             modelIndex = 0;
     }
-    showMessage(live2d_models[modelIndex].message, 3000, true);
+    if (live2d_models[modelIndex].message) showMessage(live2d_models[modelIndex].message, 3000, true);
     loadModel(live2d_models[modelIndex].name);
 }
 
@@ -332,7 +345,6 @@ function loadTipsMessage(result) {
                 })
             else
                 live2d_settings.debug && console.warn(`[WaifuTips] can not found element: ${tips.selector}`)
-
         }
     }
     for (let tips of result.seasons) {
@@ -399,7 +411,6 @@ function loadTipsMessage(result) {
     if (live2d_settings.showWelcomeMessage) showWelcomeMessage(result);
 
     const waifu_tips = result.waifu;
-
 
     if (live2d_settings.showHitokoto) {
         window.getActed = false;
@@ -509,22 +520,7 @@ function loadTipsMessage(result) {
         }
     }
 
-    $$('.waifu-tool .icon-next').addEventListener('click', () => loadOtherModel());
     $$('.waifu-tool .icon-message').addEventListener('click', () => showHitokoto());
-    $$('.waifu-tool .icon-home').addEventListener('click', () => window.location = live2d_settings.homePageUrl)
-    $$('.waifu-tool .icon-about').addEventListener('click', () => window.open(live2d_settings.aboutPageUrl))
-    $$('.waifu-tool .icon-camera').addEventListener('click', () => {
-        showMessage(getRandText(result.waifu.screenshot_message), 5000, true);
-        window.live2dCurrentVersion === 3 ? window.live2dv4.CaptureCanvas() : window.live2dv2.captureFrame = true;
-    });
-    $$('.waifu-tool .icon-cross').addEventListener('click', () => {
-        sessionStorage.setItem('waifuHide', '1');
-        showMessage(getRandText(result.waifu.hidden_message), 1300, true);
-        window.setTimeout(function () {
-            waifu.classList.add('hide');
-            document.getElementById('show-live2d').classList.remove('btnHide');
-        }, 1000);
-    })
 }
 
 const addStyle = (() => {
@@ -623,4 +619,5 @@ color:#43CBFF
 `;
 initModel();
 window.downloadCap = blobDownload;
+window.initModel = initModel;
 export {showMessage, initModel}

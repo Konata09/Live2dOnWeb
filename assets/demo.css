@@ -2,14 +2,6 @@ nav ul a:hover {
     background-color: rgba(0, 0, 0, 0.18);
 }
 
-.mute {
-    position: fixed;
-    left: 50px;
-    top: 80px;
-    z-index: 3;
-    cursor: pointer;
-}
-
 li::marker {
     font-weight: 600;
 }
@@ -71,6 +63,7 @@ header .nav-transparent {
     background-position: center center;
     background-size: cover;
     transform: translate3d(0px, 0px, 0px);
+    justify-content: center;
 }
 
 .bg-cover:after {
@@ -121,12 +114,10 @@ header .nav-transparent {
 }
 
 
-footer {
-    padding-bottom: 1px;
-}
-
-footer .copy-right {
-    color: #dbdbdb;
+.footer {
+    padding-bottom: 30px;
+    align-self: flex-end;
+    position: absolute;
 }
 
 
@@ -149,7 +140,7 @@ body {
     margin: 0
 }
 
-footer, header, nav {
+header, nav {
     display: block
 }
 
@@ -216,11 +207,6 @@ i {
     }
 }
 
-.page-footer {
-    padding-top: 20px;
-    color: #fff;
-}
-
 .center-align {
     text-align: center
 }
@@ -245,18 +231,6 @@ i {
     .container {
         width: 70%
     }
-}
-
-.row {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both
 }
 
 nav {

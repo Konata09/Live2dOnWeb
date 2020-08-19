@@ -47,20 +47,16 @@
                 <a href="https://github.com/Konata09" class="btn" target="_blank">
                     Github
                 </a>
-                <a class="btn" onclick="sessionStorage.removeItem('waifuHide');document.getElementById('waifu').classList.remove('hide')">
+                <a class="btn" onclick="sessionStorage.removeItem('waifuHide');document.getElementById('waifu').classList.remove('hide');initModel()">
                     Show Waifu
                 </a>
             </div>
         </div>
-    </div>
-</div>
-<footer class="page-footer bg-color">
-    <div class="container row center-align">
-        <div class="copy-right" style="width: -moz-available;width: -webkit-fill-available">
+        <div class="footer">
             &copy;2020 Konata
         </div>
     </div>
-</footer>
+</div>
 <div id="waifu">
     <div id="waifu-message"></div>
     <div class="waifu-tool">
@@ -78,10 +74,5 @@
 </div>
 <script src="dist/live2d_bundle.js"></script>
 <script async type="module" src="src/waifu-tips.js"></script>
-<div class="mute">
-    <img id="audioOff"
-         src="data:image/png;base64,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"
-         class="controller__audio--off" style="display: block;">
-</div>
 </body>
 </html>
