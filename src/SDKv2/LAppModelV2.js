@@ -291,10 +291,10 @@ LAppModelV2.prototype.setRandomExpression = function () {
     for (var name in this.expressions) {
         tmp.push(name);
     }
-
-    var no = parseInt(Math.random() * tmp.length);
-
-    this.setExpression(tmp[no]);
+    if (tmp.length !== 0) {
+        var no = parseInt(Math.random() * tmp.length);
+        this.setExpression(tmp[no]);
+    }
 }
 
 
@@ -338,7 +338,7 @@ LAppModelV2.prototype.startMotion = function (name, no, priority) {
         motion = this.motions[name];
         thisRef.setFadeInFadeOut(name, no, priority, motion);
     }
-    if (motionExpression != null){
+    if (motionExpression != null) {
         this.setExpression(motionExpression);
     }
 }
