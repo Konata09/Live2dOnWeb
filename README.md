@@ -47,7 +47,7 @@ const live2d_settings = {
     'modelStorage': true,                       // save model name in broswer
     'modelRandMode': false,                     // random switching model
     'preLoadMotion': false,                     // weather preload motion file. ONLY valid for model3 file,
-                                                // not preloading may increase model loading speed, but it may cause jank the when trigger motion.
+                                                // not preloading may increase model loading speed, but it may cause jank when trigger motion.
     // tool menu
     'showToolMenu': true,                       // show tools
     'canCloseLive2d': true,                     // show close button
