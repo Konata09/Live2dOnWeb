@@ -19,20 +19,20 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    # Runs a set of commands using the runners shell
-    - name: install dependencies
-      run: npm install
-    - name: build live2d_bundle.js
-      run: npm run build:prod
-    - name: remove node_modules
-      run: rm -rf node_modules
-    - name: Deploy github pages
-      uses: JamesIves/github-pages-deploy-action@3.5.9
-      with:
-        BRANCH: master # The branch the action should deploy to.
-        FOLDER: . # The folder the action should deploy.
+      # Runs a set of commands using the runners shell
+      - name: install dependencies
+        run: npm install
+      - name: Build live2d_bundle.js
+        run: npm run build:prod
+      - name: Push to Github
+        run: |
+          git config --global user.name "Konata09"
+          git config --global user.email "lz9709@gmail.com"
+          git add dist
+          git commit -m "Auto build from ${{ github.sha }}"
+          git push
     env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
