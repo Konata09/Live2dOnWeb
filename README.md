@@ -23,8 +23,8 @@
 ### 下载脚本
 
 `dist` 目录下的 `live2d_bundle.js` 是核心文件  
-`src` 目录下的 `waifu-tips.js` 是配置文件和提示消息的实现代码  
-主目录下的 `waifu-tips.json` 是提示消息的配置，非必须
+主目录下的 `waifu-tips.js` 是配置文件和提示消息的实现代码  
+主目录下的 `waifu-tips.json` 是提示消息的内容配置，非必须
 
 ### 修改配置
 
@@ -124,7 +124,7 @@ const live2d_models = [
 </div>
 <!--    src 中改为你存放的路径    -->
 <script src="dist/live2d_bundle.js"></script>
-<script async type="module" src="src/waifu-tips.js"></script>
+<script async type="module" src="waifu-tips.js"></script>
 ```
 
 ## 致谢

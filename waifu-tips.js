@@ -18,40 +18,40 @@
  　　　　　 　　　'ｰ'　　!_,.
  ****************************************************************************************************/
 const live2d_settings = {
-    'debug': true,                              // 全局 DEBUG 设置
-    'debugMousemove': false,                    // 打印指针移动坐标
-    'logMessageToConsole': true,                // 在控制台显示看板娘消息
-    'modelUrl': 'model',
-    'tipsMessage': 'waifu-tips.json',           // 看板娘提示消息的路径 可以留空不加载
+    // 基本设置
+    'modelUrl': 'model',                        // 存放模型的文件夹路径，末尾不需要斜杠
+    'tipsMessage': 'waifu-tips.json',           // 看板娘提示消息文件的路径，可以留空不加载
     // 模型设置
-    'modelName': 'miku',                        // 默认模型名称
-    'preLoadMotion': false,                     // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时有卡顿
+    'modelName': 'miku',                        // 默认加载的模型名称，仅在无本地记录的情况下有效
+    'modelStorage': true,                       // 记忆模型，下次打开页面会加载上次选择的模型
+    'modelRandMode': false,                     // 随机切换模型
+    'preLoadMotion': false,                     // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
     // 工具栏设置
-    'showToolMenu': true,                       // 显示 工具栏，可选 true(真), false(假)
-    'canCloseLive2d': true,                     // 显示 关闭看板娘  按钮，可选 true(真), false(假)
-    'canSwitchModel': true,                     // 显示 模型切换    按钮，可选 true(真), false(假)
-    'canSwitchHitokoto': true,                  // 显示 一言切换    按钮，可选 true(真), false(假)
-    'canTakeScreenshot': true,                  // 显示 看板娘截图  按钮，可选 true(真), false(假)
-    'canTurnToHomePage': true,                  // 显示 返回首页    按钮，可选 true(真), false(假)
-    'canTurnToAboutPage': true,                 // 显示 跳转关于页  按钮，可选 true(真), false(假)
-    'showVolumeBtn': false,
-    // 模型切换模式
-    'modelStorage': true,                       // 记忆上次选择的模型，可选 true(真), false(假)
-    'modelRandMode': false,                     // 随机切换模型，可选 true(真), false(假)
-    // 提示消息选项
-    'showHitokoto': true,                       // 显示一言
-    'hitokotoAPI': '',                          // 一言 API，可选 'lwl12.com', 'hitokoto.cn', 'jinrishici.com'(古诗词)
+    'showToolMenu': true,                       // 显示 工具栏
+    'canCloseLive2d': true,                     // 显示 关闭看板娘 按钮
+    'canSwitchModel': true,                     // 显示 模型切换 按钮
+    'canSwitchHitokoto': true,                  // 显示 一言切换 按钮
+    'canTakeScreenshot': true,                  // 显示 看板娘截图 按钮
+    'canTurnToHomePage': true,                  // 显示 返回首页 按钮
+    'canTurnToAboutPage': true,                 // 显示 跳转关于页 按钮
+    'showVolumeBtn': false,                     // 显示 音量控制 按钮，仅作显示，相关逻辑需自己实现
+    // 提示消息设置
+    'showHitokoto': true,                       // 空闲时显示一言
+    'hitokotoAPI': '',                          // 一言 API，可选 'hitokoto.cn'(默认), 'lwl12.com', 'jinrishici.com'(古诗词), 'fghrsh.net'
+    'showWelcomeMessage': true,                 // 显示进入页面欢迎词
+    'showCopyMessage': true,                    // 显示复制内容提示，默认只对 '#articleContent' 元素内的复制进行监视，如果你的文章内容不在这个标签下，可以在下方搜索并修改
     'showF12OpenMsg': true,                     // 显示控制台打开提示
-    'showCopyMessage': true,                    // 显示 复制内容 提示
-    'showWelcomeMessage': true,                 // 显示进入面页欢迎词
     //看板娘样式设置
-    'live2dHeight': 680,                        // 看板娘高度
-    'live2dWidth': 500,                         // 看板娘宽度
-    'waifuMinWidth': '1px',                     // 面页小于 指定宽度 隐藏看板娘，例如 'disable'(禁用), '推荐1040px'
-    'waifuEdgeSide': 'right:0',                 // 看板娘贴边方向，例如 'left:0'(靠左 0px), 'right:30'(靠右 30px)
+    'live2dHeight': 680,                        // 看板娘高度，不需要单位
+    'live2dWidth': 500,                         // 看板娘宽度，不需要单位
+    'waifuMinWidth': 'disable',                 // 页面小于宽度小于指定数值时隐藏看板娘，例如 'disable'(禁用)，推荐 '1040px'
+    'waifuEdgeSide': 'right:0',                 // 看板娘贴边方向，例如 'left:0'(靠左 0px)，'right:30'(靠右 30px)
     // 其他杂项设置
+    'debug': true,                              // 全局 DEBUG 设置
+    'debugMousemove': false,                    // 在控制台打印指针移动坐标，仅在 debug 为 true 时可用
+    'logMessageToConsole': true,                // 在控制台打印看板娘提示消息
     'l2dVersion': '2.0.0',                      // 当前版本
-    'homePageUrl': 'https://demo.bronya.moe/', // 主页地址，可选 'auto'(自动), '{URL 网址}'
+    'homePageUrl': 'https://demo.bronya.moe/',  // 主页地址，可选 'auto'(自动), '{URL 网址}'
     'aboutPageUrl': 'https://github.com/Konata09/Live2dOnWeb/', // 关于页地址, '{URL 网址}'
     'screenshotCaptureName': 'bronyaMoe.png',   // 看板娘截图文件名，例如 'live2d.png'
 }
@@ -286,6 +286,7 @@ function loadModel(modelName) {
     }
     window.live2dCurrentVersion = modelVersion;
 }
+
 // 读取记忆的模型
 function modelStorageGetItem(key) {
     return live2d_settings.modelStorage ? getLS(key) : getSS(key);
