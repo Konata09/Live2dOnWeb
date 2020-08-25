@@ -126,9 +126,11 @@ export class LAppView {
    * @param pointY Screen Y coordinates
    */
   public onTouchesMoved(pointX: number, pointY: number): void {
-    const viewX: number = this.transformViewX(this._touchManager.getX());
-    const viewY: number = this.transformViewY(this._touchManager.getY());
-    this._touchManager.touchesMoved(pointX, pointY);
+    // const viewX: number = this.transformViewX(this._touchManager.getX());
+    const viewX: number = this.transformViewX(pointX);
+    // const viewY: number = this.transformViewY(this._touchManager.getY());
+    const viewY: number = this.transformViewY(pointY);
+    // this._touchManager.touchesMoved(pointX, pointY);
 
     const live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
     LAppDefine.DebugLogEnable &&
@@ -155,11 +157,11 @@ export class LAppView {
       // Single tap
       const x: number = this._deviceToScreen.transformX(
         // this._touchManager.getX()
-        pointX // 原来使用按下时的坐标，经常无法触发动作，改为使用弹起时的坐标
+        pointX // 原代码使用按下时的坐标，经常无法触发动作，改为使用弹起时的坐标
       ); // Logical coordinates get the transformed coordinates.
       const y: number = this._deviceToScreen.transformY(
         // this._touchManager.getY()
-        pointY // 原来使用按下时的坐标，经常无法触发动作，改为使用弹起时的坐标
+        pointY // 原代码使用按下时的坐标，经常无法触发动作，改为使用弹起时的坐标
       ); // Logical coordinates get changed coordinates.
 
       live2DManager.onTap(x, y);

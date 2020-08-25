@@ -32,7 +32,7 @@ jobs:
           git config --global user.name "Konata09"
           git config --global user.email "lz9709@gmail.com"
           git add dist
-          git commit -m "Auto build from ${{ github.sha }}"
+          git commit -m "Auto built from ${{ github.sha }}"
           git push
     env:
       ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

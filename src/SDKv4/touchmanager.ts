@@ -96,8 +96,8 @@ export class TouchManager {
    * @param deviceY Y value of the touched screen
    */
   public touchesBegan(deviceX: number, deviceY: number): void {
-    this._lastX = deviceX;
-    this._lastY = deviceY;
+    // this._lastX = deviceX;
+    // this._lastY = deviceY;
     this._startX = deviceX;
     this._startY = deviceY;
     this._lastTouchDistance = -1.0;
