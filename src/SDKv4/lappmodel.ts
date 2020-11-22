@@ -376,6 +376,9 @@ export class LAppModel extends CubismUserModel {
         this.createRenderer();
         this.setupTextures();
         this.getRenderer().startUp(gl);
+        this.startRandomMotion("Start", LAppDefine.PriorityNormal, (): void => {
+          LAppDefine.DebugLogEnable && LAppPal.printMessage('[Live2Dv4] Start Motion Finished');
+        });
       }
     };
   }
