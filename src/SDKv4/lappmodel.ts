@@ -736,6 +736,28 @@ export class LAppModel extends CubismUserModel {
   }
 
   /**
+   * 根据点击位置返回 HitArea 名称
+   * @param x
+   * @param y
+   */
+  public getHitAreaName(x: number, y: number): string {
+    // 透明時は当たり判定無し。
+    if (this._opacity < 1) {
+      return undefined;
+    }
+
+    const count: number = this._modelSetting.getHitAreasCount();
+
+    for (let i = 0; i < count; i++) {
+        const drawId: CubismIdHandle = this._modelSetting.getHitAreaId(i);
+        if (this.isHit(drawId, x, y)){
+          return this._modelSetting.getHitAreaName(i);
+        }
+    }
+    return undefined;
+  }
+
+  /**
    * Load motion data in batch from group name.
    * The name of motion data is obtained internally from ModelSetting.
    *
