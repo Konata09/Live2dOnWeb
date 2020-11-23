@@ -9,11 +9,6 @@
     "Motions": {
       "Tapbody": [
         {
-          "Name": "啊 我明白了",
-          "File": "motions/啊我明白了.motion3.json",
-          "Sound": "sounds/啊我明白了.mp3"
-        },
-        {
           "Name": "吃了好吃的",
           "File": "motions/吃到好吃的.motion3.json",
           "Sound": "sounds/吃了很多好吃的呢.mp3",
@@ -33,17 +28,6 @@
           "Sound": "sounds/这个笑话说很多次就不好笑了.m4a"
         },
         {
-          "File": "motions/难道你在外面还有其他的应急食品吗.motion3.json",
-          "Sound": "sounds/你在外面还有其他食品.m4a"
-        },
-        {
-          "Name": "对食物要有敬畏之心",
-          "File": "motions/duishiwuyaoyoujingweizhixin.motion3.motion3.json",
-          "Sound": "sounds/对事物要有敬畏之心.m4a",
-          "SoundDelay": 500,
-          "Priority": 5
-        },
-        {
           "File": "motions/最近好累啊.motion3.json",
           "Sound": "sounds/最近好累啊.m4a"
         },
@@ -54,11 +38,31 @@
         {
           "File": "motions/咕嘟咕嘟.motion3.json",
           "Sound": "sounds/咕嘟咕嘟咕嘟.m4a"
+        }
+      ],
+      "Tapsl": [
+        {
+          "Name": "啊 我明白了",
+          "File": "motions/啊我明白了.motion3.json",
+          "Sound": "sounds/啊我明白了.mp3"
         },
         {
           "File": "motions/好无聊.motion3.json",
           "Sound": "sounds/好无聊啊.m4a"
         }
+      ],
+      "Taphands": [
+        {
+          "File": "motions/难道你在外面还有其他的应急食品吗.motion3.json",
+          "Sound": "sounds/你在外面还有其他食品.m4a"
+        },
+        {
+          "Name": "对食物要有敬畏之心",
+          "File": "motions/duishiwuyaoyoujingweizhixin.motion3.motion3.json",
+          "Sound": "sounds/对事物要有敬畏之心.m4a",
+          "SoundDelay": 500,
+          "Priority": 5
+        },
       ],
       "Tap头部": [
         {
@@ -123,7 +127,8 @@
         }
       ]
     }
-  },  "Layout": {
+  },
+  "Layout": {
 		"height": 2.2,
 		"bottom": 2.3
   },
