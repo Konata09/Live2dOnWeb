@@ -364,6 +364,9 @@ export class LAppModel extends CubismUserModel {
                 for (let i = 0; i < motionGroupCount; i++) {
                     this.preLoadMotionGroup(group[i]);
                 }
+                this.startRandomMotion("Start", LAppDefine.PriorityNormal, (): void => {
+                    LAppDefine.DebugLogEnable && LAppPal.printMessage('[Live2Dv4] Start Motion Finished');
+                });
             } else {
                 this._state = LoadStep.LoadTexture;
 
