@@ -25,7 +25,7 @@ const live2d_settings = {
     'modelName': 'miku',                        // 默认加载的模型名称，仅在无本地记录的情况下有效
     'modelStorage': true,                       // 记忆模型，下次打开页面会加载上次选择的模型
     'modelRandMode': false,                     // 随机切换模型
-    'preLoadMotion': false,                     // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
+    'preLoadMotion': true,                      // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
     // 工具栏设置
     'showToolMenu': true,                       // 显示 工具栏
     'canCloseLive2d': true,                     // 显示 关闭看板娘 按钮
@@ -58,9 +58,14 @@ const live2d_settings = {
 // 模型列表
 const live2d_models = [
     {
-        name: 'miku',                               // 模型名称要与文件夹名相同
-        message: 'SDK2.1 official sample 初音ミク <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',  // 切换时的提示信息
-        version: 2                                  // 模型版本，不同版本入口文件不同： 2: model.json 或 3: 模型名.model3.json
+        name: 'paimeng',                               // 模型名称要与文件夹名相同
+        message: 'SDK4 派蒙 bilibili@根瘤菌rkzj',  // 切换时的提示信息
+        version: 3
+    },
+    {
+        name: 'miku',
+        message: 'SDK2.1 official sample 初音ミク <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
+        version: 2
     },
     {
         name: 'shizuku',
