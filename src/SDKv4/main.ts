@@ -15,6 +15,7 @@ declare global {
     interface Window {
         live2dv4: any;
         downloadCap: any;
+        webpReady: any;
     }
 }
 window.live2dv4 = window.live2dv4 || {};

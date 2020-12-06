@@ -61,13 +61,29 @@ export class LAppTextureManager {
         // 2回目以降はキャッシュが使用される(待ち時間なし)
         // WebKitでは同じImageのonloadを再度呼ぶには再インスタンスが必要
         // 詳細：https://stackoverflow.com/a/5024181
+
+        if (window.webpReady === true)
+          fileName = fileName.concat(".webp");
+        let triedOrigin = false;
         ite.ptr().img = new Image();
         ite.ptr().img.onload = (): void => callback(ite.ptr());
         ite.ptr().img.src = fileName;
+        ite.ptr().img.onerror = (): void => {
+          if (window.webpReady === true && triedOrigin === false) {
+            console.error("Failed to load WebP image: " + ite.ptr().img.src + " Load origin file instead.");
+            triedOrigin = true;
+            ite.ptr().img.src = fileName.replace(/\.webp$/, "");
+          } else {
+            console.error("Failed to load image: " + ite.ptr().img.src);
+          }
+        }
         return;
       }
     }
 
+    if (window.webpReady === true)
+      fileName = fileName.concat(".webp");
+    let triedOrigin = false;
     // データのオンロードをトリガーにする
     const img = new Image();
     img.onload = (): void => {
@@ -111,6 +127,15 @@ export class LAppTextureManager {
 
       callback(textureInfo);
     };
+    img.onerror = (): void => {
+      if (window.webpReady === true && triedOrigin === false) {
+        console.error("Failed to load WebP image: " + img.src + " Load origin file instead.");
+        triedOrigin = true;
+        img.src = fileName.replace(/\.webp$/, "");
+      } else {
+        console.error("Failed to load image: " + img.src);
+      }
+    }
     img.src = fileName;
   }
 

@@ -43,7 +43,6 @@ LAppModelV2.prototype.load = function (gl, modelSettingPath, callback) {
                     var texPaths = thisRef.modelHomeDir +
                         thisRef.modelSetting.getTextureFile(i);
                 }
-
                 thisRef.loadTexture(i, texPaths, function () {
 
                     if (thisRef.isTexLoaded) {

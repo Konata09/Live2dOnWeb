@@ -22,10 +22,12 @@ const live2d_settings = {
     'modelUrl': 'model',                        // 存放模型的文件夹路径，末尾不需要斜杠
     'tipsMessage': 'waifu-tips.json',           // 看板娘提示消息文件的路径，可以留空不加载
     // 模型设置
-    'modelName': 'paimon',                     // 默认加载的模型名称，仅在无本地记录的情况下有效
+    'modelName': 'paimon',                      // 默认加载的模型名称，仅在无本地记录的情况下有效
     'modelStorage': true,                       // 记忆模型，下次打开页面会加载上次选择的模型
     'modelRandMode': false,                     // 随机切换模型
     'preLoadMotion': true,                      // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
+    'tryWebp': true,                            // 如果浏览器支持 WebP 格式，将优先加载 WebP 格式的贴图，例如默认贴图文件为 klee.8192/texture_00.png，
+                                                // 启用后将优先加载 klee.8192/texture_00.png.webp，文件不存在会自动 fallback
     // 工具栏设置
     'showToolMenu': true,                       // 显示 工具栏
     'canCloseLive2d': true,                     // 显示 关闭看板娘 按钮
@@ -167,6 +169,16 @@ function getRandText(text) {
 
 let timeoutID;
 
+function testWebP() {
+    return new Promise(res => {
+        const webP = new Image();
+        webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        webP.onload = webP.onerror = () => {
+            res(webP.height === 2);
+        };
+    })
+}
+
 function showMessage(text, timeout, flag) {
     if (flag || getSS('waifu-text') === '' || getSS('waifu-text') === null) {
         if (timeoutID) window.clearTimeout(timeoutID);
@@ -272,6 +284,13 @@ function initModel() {
     window.live2dv4.debug = live2d_settings.debug;
     window.live2dv2.debugMousemove = live2d_settings.debug && live2d_settings.debugMousemove;
     window.live2dv4.debugMousemove = live2d_settings.debug && live2d_settings.debugMousemove;
+    if (live2d_settings.tryWebp) {
+        testWebP().then(r => window.webpReady = r);
+        if (window.webpReady === true)
+            console.log("[WaifuTips] Your browser support WebP format. Try to load WebP texture first.")
+        else
+            console.log("[WaifuTips] Your browser do not support WebP format.")
+    }
     loadModel(modelName);
 }
 
