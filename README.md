@@ -43,7 +43,7 @@ const live2d_settings = {
     'modelUrl': 'model',                        // URL of a directory which consists of all model folder. NO slash in the end
     'tipsMessage': 'waifu-tips.json',           // message tips file. Can leave blank
     // model
-    'modelName': 'miku',                        // default model name when first visit website
+    'modelName': 'paimon',                      // default model name when first visit website
     'modelStorage': true,                       // save model name in broswer
     'modelRandMode': false,                     // random switching model
     'preLoadMotion': false,                     // weather preload motion file. ONLY valid for model3 file,
@@ -68,7 +68,7 @@ const live2d_settings = {
     'live2dHeight': 680,                        // height of Live2D model, NO 'px' in the end
     'live2dWidth': 500,                         // width of Live2D model, NO 'px' in the end
     'waifuMinWidth': '1040px',                  // hide model when window width less than setting, eg, '1040px' (Recommend) or 'disable'
-    'waifuEdgeSide': 'right:0',                 // position of model, eg, 'left:0' or 'right:30'
+    'waifuEdgeSide': 'right:0',                 // position of model, eg, 'left:0' or 'right:30', can be override by model setting
     // misc
     'debug': false,                             // global debug setting
     'debugMousemove': false,                    // log cursor postion to console, valid if debug is true
@@ -85,23 +85,29 @@ const live2d_settings = {
 ```js
 const live2d_models = [
     {
-        name: 'miku',                               // model name, should be same as folder name
-        message: 'SDK2.1 official sample 初音ミク',  // meassage when switch to this model
-        version: 2                                  // model verion, different version has differnt entry file： 2: model.json , 3: FolderName.model3.json
+        name: 'paimon',                                     // model name, should be same as folder name
+        message: 'SDK4 Emergency Food bilibili@根瘤菌rkzj',  // meassage when switch to this model
+        version: 3,                                         // model verion, different version has differnt entry file： 2: model.json , 3: FolderName.model3.json
+        // position: 'left'                                 // position of this model
+    },
+    {
+        name: 'miku',
+        message: 'SDK2.1 official sample 初音ミク <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
+        version: 2
     },
     {
         name: 'shizuku',
-        message: 'SDK2.1 official sample しずく',
+        message: 'SDK2.1 official sample しずく <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
         version: 2
     },
     {
         name: 'houmuya',
-        message: 'SDK3 吼姆布洛妮娅 bilibili@呦克里斯汀娜呦',
+        message: 'SDK3 bronya bilibili@呦克里斯汀娜呦',
         version: 3
     },
     {
         name: 'Rice',
-        message: 'SDK4 official sample',
+        message: 'SDK4 official sample Rice <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
         version: 3
     },
 ]

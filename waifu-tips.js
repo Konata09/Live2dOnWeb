@@ -45,7 +45,7 @@ const live2d_settings = {
     'live2dHeight': 680,                        // 看板娘高度，不需要单位
     'live2dWidth': 500,                         // 看板娘宽度，不需要单位
     'waifuMinWidth': 'disable',                 // 页面小于宽度小于指定数值时隐藏看板娘，例如 'disable'(禁用)，推荐 '1040px'
-    'waifuEdgeSide': 'right:0',                 // 看板娘贴边方向，例如 'left:0'(靠左 0px)，'right:30'(靠右 30px)
+    'waifuEdgeSide': 'right:0',                 // 看板娘贴边方向，例如 'left:0'(靠左 0px)，'right:30'(靠右 30px)，可以被下面的模型设置覆盖
     // 其他杂项设置
     'debug': true,                              // 全局 DEBUG 设置
     'debugMousemove': false,                    // 在控制台打印指针移动坐标，仅在 debug 为 true 时可用
@@ -61,6 +61,7 @@ const live2d_models = [
         name: 'paimeng',                               // 模型名称要与文件夹名相同
         message: 'SDK4 Emergency Food bilibili@根瘤菌rkzj',  // 切换时的提示信息
         version: 3,                                         // 模型版本，model3.json 结尾的都填3，model.json 结尾的填2
+        // position: 'left'                                 // 此模型的显示位置，会覆盖上面的全局设置，只对此模型生效
     },
     {
         name: 'miku',
@@ -187,6 +188,25 @@ function hideMessage(timeout) {
     }, timeout);
 }
 
+function changePosition(position) {
+    if (position === 'left') {
+        $$('.waifu-tool').style.right = 'unset';
+        $$('.waifu-tool').style.left = '10px';
+        waifu.style.right = 'unset';
+        waifu.style.left = live2d_settings.waifuEdgeSide.split(":")[1];
+    } else if (position === 'right') {
+        $$('.waifu-tool').style.left = 'unset';
+        $$('.waifu-tool').style.right = '10px';
+        waifu.style.left = 'unset';
+        waifu.style.right = live2d_settings.waifuEdgeSide.split(":")[1];
+    } else {
+        $$('.waifu-tool').style.left = '';
+        $$('.waifu-tool').style.right = '';
+        waifu.style.left = '';
+        waifu.style.right = '';
+    }
+}
+
 function initModel() {
     /* Load style sheet */
     addStyle(waifuStyle);
@@ -266,6 +286,7 @@ function loadModel(modelName) {
     for (let model of live2d_models) {
         if (model.name === modelName) {
             modelVersion = model.version;
+            changePosition(model.position);
             break;
         }
     }

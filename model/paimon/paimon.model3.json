@@ -1,11 +1,11 @@
 {
   "Version": 3,
   "FileReferences": {
-    "Moc": "paimeng.moc3",
+    "Moc": "paimon.moc3",
     "Textures": [
-      "paimeng.4096/texture_00.png"
+      "paimon.4096/texture_00.png"
     ],
-    "Physics": "paimeng.physics3.json",
+    "Physics": "paimon.physics3.json",
     "Motions": {
       "Tapbody": [
         {
