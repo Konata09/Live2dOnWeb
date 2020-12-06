@@ -285,13 +285,16 @@ function initModel() {
     window.live2dv2.debugMousemove = live2d_settings.debug && live2d_settings.debugMousemove;
     window.live2dv4.debugMousemove = live2d_settings.debug && live2d_settings.debugMousemove;
     if (live2d_settings.tryWebp) {
-        testWebP().then(r => window.webpReady = r);
-        if (window.webpReady === true)
-            console.log("[WaifuTips] Your browser support WebP format. Try to load WebP texture first.")
-        else
-            console.log("[WaifuTips] Your browser do not support WebP format.")
+        testWebP().then(r => window.webpReady = r).then(() => {
+            if (window.webpReady === true)
+                console.log("[WaifuTips] Your browser support WebP format. Try to load WebP texture first.");
+            else
+                console.log("[WaifuTips] Your browser do not support WebP format.");
+            loadModel(modelName);
+        });
+    } else {
+        loadModel(modelName);
     }
-    loadModel(modelName);
 }
 
 function loadModel(modelName) {
