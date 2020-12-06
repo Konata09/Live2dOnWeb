@@ -48,6 +48,9 @@ const live2d_settings = {
     'modelRandMode': false,                     // random switching model
     'preLoadMotion': false,                     // weather preload motion file. ONLY valid for model3 file,
                                                 // not preloading may increase model loading speed, but it may cause jank when trigger motion.
+    'tryWebp': true,                            // if broswer support WebP format, will try to load Webp texture first,
+                                                // eg. origin texture file is klee.8192/texture_00.png, if enabled, will load klee.8192/texture_00.png.webp FIRST
+                                                // will fallback to load origin file if any error occured 
     // tool menu
     'showToolMenu': true,                       // show tools
     'canCloseLive2d': true,                     // show close button
