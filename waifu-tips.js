@@ -59,8 +59,8 @@ const live2d_settings = {
 const live2d_models = [
     {
         name: 'paimeng',                               // 模型名称要与文件夹名相同
-        message: 'SDK4 派蒙 bilibili@根瘤菌rkzj',  // 切换时的提示信息
-        version: 3
+        message: 'SDK4 Emergency Food bilibili@根瘤菌rkzj',  // 切换时的提示信息
+        version: 3,                                         // 模型版本，model3.json 结尾的都填3，model.json 结尾的填2
     },
     {
         name: 'miku',
@@ -74,7 +74,7 @@ const live2d_models = [
     },
     {
         name: 'houmuya',
-        message: 'SDK3 吼姆布洛妮娅 bilibili@呦克里斯汀娜呦',
+        message: 'SDK3 bronya bilibili@呦克里斯汀娜呦',
         version: 3
     },
     {
@@ -600,7 +600,7 @@ z-index:997
 display:none;
 color:#d73b66;
 top:130px;
-right:10px;
+${live2d_settings.waifuEdgeSide.split(":")[0]}:10px;
 position:absolute;
 z-index:998
 }
