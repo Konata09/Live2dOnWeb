@@ -62,17 +62,20 @@ export class LAppTextureManager {
         // WebKitでは同じImageのonloadを再度呼ぶには再インスタンスが必要
         // 詳細：https://stackoverflow.com/a/5024181
 
-        if (window.webpReady === true)
+        if (window.avifReady === true)
+          fileName = fileName.concat(".avif");
+        else if(window.webpReady === true)
           fileName = fileName.concat(".webp");
+
         let triedOrigin = false;
         ite.ptr().img = new Image();
         ite.ptr().img.onload = (): void => callback(ite.ptr());
         ite.ptr().img.src = fileName;
         ite.ptr().img.onerror = (): void => {
-          if (window.webpReady === true && triedOrigin === false) {
-            console.error("Failed to load WebP image: " + ite.ptr().img.src + " Load origin file instead.");
+          if ((window.webpReady === true)||(window.avifReady === true) && triedOrigin === false) {
+            console.error("Failed to load AVIF/WebP image: " + ite.ptr().img.src + " Load origin file instead.");
             triedOrigin = true;
-            ite.ptr().img.src = fileName.replace(/\.webp$/, "");
+            ite.ptr().img.src = fileName.replace(/\.(webp|avif)$/i, "");
           } else {
             console.error("Failed to load image: " + ite.ptr().img.src);
           }
@@ -81,8 +84,11 @@ export class LAppTextureManager {
       }
     }
 
-    if (window.webpReady === true)
+    if (window.avifReady === true)
+      fileName = fileName.concat(".avif");
+    else if(window.webpReady === true)
       fileName = fileName.concat(".webp");
+
     let triedOrigin = false;
     // データのオンロードをトリガーにする
     const img = new Image();
@@ -129,9 +135,9 @@ export class LAppTextureManager {
     };
     img.onerror = (): void => {
       if (window.webpReady === true && triedOrigin === false) {
-        console.error("Failed to load WebP image: " + img.src + " Load origin file instead.");
+        console.error("Failed to load WebP/AVIF image: " + img.src + " Load origin file instead.");
         triedOrigin = true;
-        img.src = fileName.replace(/\.webp$/, "");
+        img.src = fileName.replace(/\.(webp|avif)$/i, "");
       } else {
         console.error("Failed to load image: " + img.src);
       }

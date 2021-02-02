@@ -66,7 +66,9 @@ PlatformManager.prototype.loadLive2DModel = function (path/*String*/, callback) 
 //    PlatformManager # loadTexture()
 //============================================================
 PlatformManager.prototype.loadTexture = function (model/*ALive2DModel*/, no/*int*/, path/*String*/, callback) {
-    if (window.webpReady === true)
+    if (window.avifReady === true)
+        path = path.concat(".avif");
+    else if (window.webpReady === true)
         path = path.concat(".webp");
     let triedOrigin = false;
 
@@ -107,10 +109,10 @@ PlatformManager.prototype.loadTexture = function (model/*ALive2DModel*/, no/*int
     };
 
     loadedImage.onerror = function () {
-        if (window.webpReady === true && triedOrigin === false) {
-            console.error("Failed to load WebP image: " + loadedImage.src + " Load origin file instead.");
+        if ((window.webpReady === true)||(window.avifReady === true) && triedOrigin === false) {
+            console.error("Failed to load WebP/AVIF image: " + loadedImage.src + " Load origin file instead.");
             triedOrigin = true;
-            loadedImage.src = path.replace(/\.webp$/, "");
+            loadedImage.src = path.replace(/\.(webp|avif)$/i, "");
         } else {
             console.error("Failed to load image: " + loadedImage.src);
         }

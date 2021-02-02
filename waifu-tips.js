@@ -25,9 +25,10 @@ const live2d_settings = {
     'modelName': 'paimon',                      // 默认加载的模型名称，仅在无本地记录的情况下有效
     'modelStorage': true,                       // 记忆模型，下次打开页面会加载上次选择的模型
     'modelRandMode': false,                     // 随机切换模型
-    'preLoadMotion': true,                      // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
+    'preLoadMotion': false,                      // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
     'tryWebp': true,                            // 如果浏览器支持 WebP 格式，将优先加载 WebP 格式的贴图，例如默认贴图文件为 klee.8192/texture_00.png，
                                                 // 启用后将优先加载 klee.8192/texture_00.png.webp，文件不存在会自动 fallback
+    'tryAVIF': true,                            // 启用 AVIF 格式贴图，具体同上
     // 工具栏设置
     'showToolMenu': true,                       // 显示 工具栏
     'canCloseLive2d': true,                     // 显示 关闭看板娘 按钮
@@ -179,6 +180,27 @@ function testWebP() {
     })
 }
 
+function testAVIF() {
+    return new Promise(res => {
+        const avif = new Image();
+        avif.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUEAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAACAAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAEAAAABAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgSAAAAAAABNjb2xybmNseAABAA0AAIAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAAChtZGF0EgAKBzgADtAQ0AIyExAAAAAP+I9ncKuWLRAeA55Wc/A=';
+        avif.onload = avif.onerror = () => {
+            res(avif.height === 1);
+        };
+    })
+}
+
+function showImageFormat() {
+    if (window.webpReady === true)
+        console.log("[WaifuTips] Your browser support WebP format. Try to load WebP texture first.");
+    else
+        console.log("[WaifuTips] Your browser do not support WebP format.");
+    if (window.avifReady === true)
+        console.log("[WaifuTips] Your browser support AVIF format. Try to load AVIF texture first.");
+    else
+        console.log("[WaifuTips] Your browser do not support AVIF format.");
+}
+
 function showMessage(text, timeout, flag) {
     if (flag || getSS('waifu-text') === '' || getSS('waifu-text') === null) {
         if (timeoutID) window.clearTimeout(timeoutID);
@@ -284,17 +306,18 @@ function initModel() {
     window.live2dv4.debug = live2d_settings.debug;
     window.live2dv2.debugMousemove = live2d_settings.debug && live2d_settings.debugMousemove;
     window.live2dv4.debugMousemove = live2d_settings.debug && live2d_settings.debugMousemove;
-    if (live2d_settings.tryWebp) {
-        testWebP().then(r => window.webpReady = r).then(() => {
-            if (window.webpReady === true)
-                console.log("[WaifuTips] Your browser support WebP format. Try to load WebP texture first.");
-            else
-                console.log("[WaifuTips] Your browser do not support WebP format.");
-            loadModel(modelName);
-        });
-    } else {
+
+    if (live2d_settings.tryWebp && live2d_settings.tryAVIF)
+        Promise.all([testWebP(), testAVIF()]).then(([w, a]) => {
+            window.webpReady = w;
+            window.avifReady = a;
+        }).then(showImageFormat).finally(loadModel(modelName));
+    else if (live2d_settings.tryWebp)
+        testWebP().then(w => window.webpReady = w).then(showImageFormat).finally(loadModel(modelName));
+    else if (live2d_settings.tryAVIF)
+        testAVIF().then(a => window.avifReady = a).then(showImageFormat).finally(loadModel(modelName));
+    else
         loadModel(modelName);
-    }
 }
 
 function loadModel(modelName) {
@@ -302,7 +325,7 @@ function loadModel(modelName) {
         setLS('modelName', modelName);
     else
         setSS('modelName', modelName);
-    live2d_settings.debug && console.log(`[WaifuTips] 加载模型 ${modelName}`);
+    live2d_settings.debug && console.log(`[WaifuTips] load model: ${modelName}`);
     let modelVersion = 2;
     // 在配置中找到要加载模型的版本
     for (let model of live2d_models) {
