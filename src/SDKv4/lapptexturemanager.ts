@@ -66,6 +66,7 @@ export class LAppTextureManager {
           fileName = fileName.concat(".webp");
         let triedOrigin = false;
         ite.ptr().img = new Image();
+        ite.ptr().img.crossOrigin = "anonymous";
         ite.ptr().img.onload = (): void => callback(ite.ptr());
         ite.ptr().img.src = fileName;
         ite.ptr().img.onerror = (): void => {
@@ -86,6 +87,7 @@ export class LAppTextureManager {
     let triedOrigin = false;
     // データのオンロードをトリガーにする
     const img = new Image();
+    img.crossOrigin = "anonymous";
     img.onload = (): void => {
       // テクスチャオブジェクトの作成
       const tex: WebGLTexture = gl.createTexture();
