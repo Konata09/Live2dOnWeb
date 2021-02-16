@@ -41,14 +41,15 @@ header .nav-transparent {
     font-size: 1rem;
     color: #fff;
     border: 1px solid #fff;
-    background-color: transparent;
     border-radius: 30px;
     box-shadow: 0px 0px 10px -5px #000;
+    background: linear-gradient(90deg, rgba(35, 31, 31, 0), rgba(88, 88, 88, 0) 33%, #43CBFF 60%, #0396FF) center left / 300% 100% no-repeat;
+    transition: ease-out all 0.2s;
 }
 
 .cover-btns a:hover {
     border: 1px solid #0ad3ff;
-    background: linear-gradient(135deg, #0396FF 0%, #43CBFF 100%);
+    background-position: right;
     box-shadow: 0 14px 26px -12px rgba(39, 88, 157, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(72, 196, 233, 0.2);
 }
 
@@ -371,31 +372,6 @@ html {
 
 .nav-transparent .github-corner {
     display: block;
-}
-
-.github-corner {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    border: 0;
-    transform: scale(1.1);
-}
-
-.github-corner svg {
-    color: #7d859c;
-    fill: #00507b;
-    height: 64px;
-    width: 64px;
-}
-
-.github-corner:hover .octo-arm {
-    animation: a 0.56s ease-in-out;
-}
-
-.github-corner .octo-arm {
-    animation: none;
 }
 
 @keyframes a {
