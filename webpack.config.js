@@ -1,18 +1,8 @@
-var path = require('path');
+const path = require('path');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-    entry: ['./src/SDKv4/main.ts', './src/SDKv2/mainV2.js'],
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'live2d_bundle.js',
-        publicPath: './dist/'
-    },
-    resolve: {
-        extensions: ['.ts', '.js'],
-        alias: {
-            '@framework': path.resolve(__dirname, 'src/SDKv4/Framework/src')
-        }
-    },
+    mode: "production",
     module: {
         rules: [
             {
@@ -21,6 +11,34 @@ module.exports = {
                 loader: 'ts-loader'
             }
         ]
+    },
+    resolve: {
+        extensions: ['.ts', '.js'],
+        alias: {
+            '@framework': path.resolve(__dirname, 'src/SDKv4/Framework/src')
+        }
+    },
+    plugins: [
+        new CompressionPlugin({
+            filename: "[path][base].br",
+            algorithm: "brotliCompress",
+            compressionOptions: {level: 11},
+            threshold: 4096,
+            minRatio: 1
+        }),
+        new CompressionPlugin({
+            filename: "[path][base].gz",
+            algorithm: "gzip",
+            compressionOptions: {level: 9},
+            threshold: 4096,
+            minRatio: 1,
+        }),
+    ],
+    entry: ['./src/SDKv4/main.ts', './src/SDKv2/mainV2.js'],
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'live2d_bundle.js',
+        publicPath: './dist/'
     },
     devServer: {
         contentBase: path.resolve(__dirname, '.'),
