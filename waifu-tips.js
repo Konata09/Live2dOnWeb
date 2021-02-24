@@ -225,6 +225,9 @@ function initModel() {
     if (getSS('waifuHide') === '1') {
         waifu.classList.add('hide');
         return;
+    } else if (window.innerWidth <= Number(live2d_settings.waifuMinWidth.replace('px', ''))) {
+        waifu.classList.add('hide');
+        return;
     } else {
         waifu.classList.remove('hide');
     }
