@@ -4,7 +4,7 @@ ENGLISH | [简体中文](https://github.com/Konata09/Live2dOnWeb/blob/master/REA
 
 **Add Live2D widget in your website.**  
 
-**[DEMO](https://demo.bronya.moe)**
+**[DEMO](https://rivens.bronya.moe/)**
 
 ## Feature
 

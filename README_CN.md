@@ -4,7 +4,7 @@
 
 **在网页中添加 Live2D 模型。**
 
-**[DEMO](https://demo.bronya.moe)**
+**[DEMO](https://rivens.bronya.moe/)**
 
 ## 特性
 
