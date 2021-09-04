@@ -77,7 +77,7 @@ const live2d_settings = {
     'debugMousemove': false,                    // log cursor postion to console, valid if debug is true
     'logMessageToConsole': true,                // log message tips to console
     'l2dVersion': '2.0.0',                      // script version
-    'homePageUrl': 'https://demo.bronya.moe/',  // homepage, could be URL or 'auto'
+    'homePageUrl': 'https://rivens.bronya.moe/',  // homepage, could be URL or 'auto'
     'aboutPageUrl': 'https://github.com/Konata09/Live2dOnWeb/', // about page
     'screenshotCaptureName': 'bronyaMoe.png',   // filename of screenshot, eg, 'live2d.png'
 }
