@@ -62,7 +62,7 @@
           "Sound": "sounds/对事物要有敬畏之心.m4a",
           "SoundDelay": 500,
           "Priority": 5
-        },
+        }
       ],
       "Tap头部": [
         {
